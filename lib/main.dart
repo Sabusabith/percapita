@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percapita_copy/controller/appbar_controller.dart';
+import 'package:percapita_copy/screens/Login/login.dart';
 import 'package:percapita_copy/screens/home/MasterScreen.dart';
 import 'package:percapita_copy/screens/home/dashboard/dashboard.dart';
 
@@ -14,14 +15,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => GetMaterialApp(
-        home: MasterScreen(body: DashBoard(),),     
+    return  GetMaterialApp(
+        home: Myapps(),    
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light(),
         darkTheme: ThemeData.dark(),
         themeMode: appbarController.islight.value ? ThemeMode.dark : ThemeMode.light,
-      ),
+      
     );
+  }
+  
+}
+class Myapps extends StatelessWidget {
+  const Myapps({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(backgroundColor: Colors.white,body: Login(),);
   }
 }

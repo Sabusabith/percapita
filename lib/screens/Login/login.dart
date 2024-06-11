@@ -4,24 +4,28 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:percapita_copy/controller/appbar_controller.dart';
 import 'package:percapita_copy/screens/common/colors/colors.dart';
+import 'package:percapita_copy/screens/home/MasterScreen.dart';
+import 'package:percapita_copy/screens/home/dashboard/dashboard.dart';
 
 import '../../controller/login_controller.dart';
 
 class Login extends StatelessWidget {
   final CheckboxController checkboxController = Get.put(CheckboxController());
-AppbarController appbarController = Get.put(AppbarController());
+// AppbarController appbarController = Get.put(AppbarController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Padding(
+    return 
+    
+     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       child: Row(
         children: [
           Expanded(
-              child: Obx(()=>
+              child: 
                Container(
                   decoration: BoxDecoration(
-                     color:appbarController.islight.value?Colors.white:darkcolor ,borderRadius: BorderRadius.circular(5)
+                     color:Colors.white ,borderRadius: BorderRadius.circular(5)
                   ),
                        
                             child: Column(
@@ -34,7 +38,7 @@ AppbarController appbarController = Get.put(AppbarController());
                         child: Text(
                           "Welcome Back",
                           style: TextStyle(
-                              color:appbarController.islight.value? Colors.grey.shade700:Colors.white,
+                              color: Colors.grey.shade700,
                               fontSize: 30,
                               fontWeight: FontWeight.bold),
                         ),
@@ -51,7 +55,7 @@ AppbarController appbarController = Get.put(AppbarController());
                         child: Text(
                           "USER NAME",
                           style: TextStyle(
-                              color:appbarController.islight.value? Colors.grey.shade600:Colors.white, 
+                              color: Colors.grey.shade600,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -64,10 +68,10 @@ AppbarController appbarController = Get.put(AppbarController());
                       padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: TextField(
                         cursorColor: primeryColor,
-                        style: TextStyle(color:appbarController.islight.value? Colors.grey.shade800:Colors.white ),
+                        style: TextStyle(color: Colors.grey.shade800 ),
                         decoration: InputDecoration(
                           hintText: "USER NAME",
-                          hintStyle: TextStyle(color:appbarController.islight.value? Colors.grey.shade400:Colors.grey.shade400,),
+                          hintStyle: TextStyle(color: Colors.grey.shade400,),
                             border: InputBorder.none,
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
@@ -88,7 +92,7 @@ AppbarController appbarController = Get.put(AppbarController());
                         child: Text(
                           "PASSWORD",
                           style: TextStyle(
-                              color:appbarController.islight.value? Colors.grey.shade600:Colors.white ,
+                              color: Colors.grey.shade600,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -101,10 +105,10 @@ AppbarController appbarController = Get.put(AppbarController());
                       padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: TextField(
                          cursorColor: primeryColor,
-                           style: TextStyle(color:appbarController.islight.value? Colors.grey.shade800:Colors.white ),
+                           style: TextStyle(color: Colors.grey.shade800 ),
                         decoration: InputDecoration(
                           hintText: "PASSWORD",
-                              hintStyle: TextStyle(color: appbarController.islight.value? Colors.grey.shade400:Colors.grey.shade400),
+                              hintStyle: TextStyle(color:  Colors.grey.shade400),
                             border: InputBorder.none,
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
@@ -125,7 +129,7 @@ AppbarController appbarController = Get.put(AppbarController());
                         Obx(() => Checkbox(
                           
                               checkColor: Colors.white,
-                           side: BorderSide(color: appbarController.islight.value? Colors.grey.shade400:Colors.white,width: 1),
+                           side: BorderSide(color: Colors.grey.shade400,width: 1),
                               activeColor: primeryColor,
                               value: checkboxController.isChecked.value,
                               onChanged: (newValue) {
@@ -138,7 +142,7 @@ AppbarController appbarController = Get.put(AppbarController());
                         Text(
                           "Keep me logged in",
                           style: TextStyle(
-                              color:appbarController.islight.value? Colors.grey.shade600:Colors.grey.shade400 , fontSize: 15),
+                              color:Colors.grey.shade600 , fontSize: 15),
                         ),
                         Spacer(),
                         Text(
@@ -152,13 +156,18 @@ AppbarController appbarController = Get.put(AppbarController());
                     ),
                   ),
                   SizedBox(height: 25,),
-                  Container(margin: EdgeInsets.symmetric(horizontal: 35),
-                    width: size.width,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: primeryColor,
-                        borderRadius: BorderRadius.circular(5)),
-                        child: Center(child: Text("Login",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),)),
+                InkWell(onTap: (){
+                  Get.to( MasterScreen(body: DashBoard()));
+                 
+                },
+                    child: Container(margin: EdgeInsets.symmetric(horizontal: 35),
+                      width: size.width,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: primeryColor,
+                          borderRadius: BorderRadius.circular(5)),
+                          child: Center(child: Text("Login",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),)),
+                    ),
                   ),
                   SizedBox(height: 25,),
                   Row(
@@ -173,7 +182,7 @@ AppbarController appbarController = Get.put(AppbarController());
                      children: [
                        Text(
                               "Don't have an account? ",
-                              style: TextStyle(color:appbarController.islight.value? Colors.grey.shade600:Colors.grey.shade400 , fontSize: 15),
+                              style: TextStyle(color: Colors.grey.shade600 , fontSize: 15),
                             ),
                              Text(
                               "Sign Up",
@@ -184,7 +193,7 @@ AppbarController appbarController = Get.put(AppbarController());
                 ],
                             ),
                           ),
-              )),
+              ),
           Expanded(
               child: Container(
             child: Image.asset("assets/images/png/login.png",fit: BoxFit.cover,),

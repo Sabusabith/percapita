@@ -45,22 +45,25 @@ class SideBar extends StatelessWidget {
                           index: 10,
                         ),
                         HoverListTile(
-                          widget: Login(),
+                          widget: DashBoard(),
                           icon: Icons.circle_outlined,
                           title: "Company Modules",
                           index: 11,
                         ),
                         HoverListTile(
+                          widget: DashBoard(),
                           icon: Icons.circle_outlined,
                           title: "Company Menu",
                           index: 12,
                         ),
                         HoverListTile(
+                          widget: DashBoard(),
                           icon: Icons.circle_outlined,
                           title: "Leave Type",
                           index: 13,
                         ),
                         HoverListTile(
+                          widget: DashBoard(),
                           icon: Icons.circle_outlined,
                           title: "Holiday List",
                           index: 14,
@@ -73,11 +76,13 @@ class SideBar extends StatelessWidget {
                       index: 2,
                       children: [
                         HoverListTile(
+                          widget: DashBoard(),
                           icon: Icons.circle_outlined,
                           title: "List All",
                           index: 20,
                         ),
                         HoverListTile(
+                          widget: DashBoard(),
                           icon: Icons.circle_outlined,
                           title: "Employee Menu",
                           index: 21,
@@ -90,26 +95,31 @@ class SideBar extends StatelessWidget {
                       index: 3,
                       children: [
                         HoverListTile(
+                          widget: DashBoard(),
                           icon: Icons.circle_outlined,
                           title: "List All",
                           index: 31,
                         ),
                         HoverListTile(
+                          widget: DashBoard(),
                           icon: Icons.circle_outlined,
                           title: "Payroll Processing",
                           index: 32,
                         ),
                         HoverListTile(
+                          widget: DashBoard(),
                           icon: Icons.circle_outlined,
                           title: "Processing Date",
                           index: 33,
                         ),
                         HoverListTile(
+                          widget: DashBoard(),
                           icon: Icons.circle_outlined,
                           title: "Maximum Leave Allowed",
                           index: 34,
                         ),
                         HoverListTile(
+                          widget: DashBoard(),
                           icon: Icons.circle_outlined,
                           title: "Holiday List",
                           index: 35,
@@ -122,16 +132,19 @@ class SideBar extends StatelessWidget {
                       index: 4,
                       children: [
                         HoverListTile(
+                          widget: DashBoard(),
                           title: "Sub-item 1",
                           index: 40,
                         ),
                         HoverListTile(
+                          widget: DashBoard(),
                           title: "Sub-item 2",
                           index: 41,
                         ),
                       ],
                     ),
                     HoverListTile(
+                      widget: DashBoard(),
                       icon: Icons.person,
                       title: "Profile",
                       index: 5,

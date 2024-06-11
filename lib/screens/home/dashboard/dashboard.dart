@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:percapita_copy/screens/common/colors/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../controller/appbar_controller.dart';
@@ -52,7 +53,7 @@ class DashBoard extends StatelessWidget {
                       children: [
                         Text(
                           "WELCOME MESSAGE",
-                          style: TextStyle(
+                          style: GoogleFonts.inter(
                               color: appbarController.islight.value
                                   ? Colors.grey.shade800
                                   : Colors.white,
@@ -61,7 +62,7 @@ class DashBoard extends StatelessWidget {
                         ),
                         Text(
                           "Welcome Text if any should be given here",
-                          style: TextStyle(
+                          style: GoogleFonts.inter(
                               color: appbarController.islight.value
                                   ? Colors.grey.shade800
                                   : Colors.white,
@@ -128,7 +129,7 @@ class DashBoard extends StatelessWidget {
                             ),
                             Text(
                               "28",
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                   color: appbarController.islight.value
                                       ? Colors.grey.shade800
                                       : Colors.white,
@@ -140,7 +141,7 @@ class DashBoard extends StatelessWidget {
                             ),
                             Text(
                               textData[index],
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                   color: appbarController.islight.value
                                       ? Colors.grey.shade800
                                       : Colors.white,
@@ -153,7 +154,7 @@ class DashBoard extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 35,),
+            SizedBox(height: 15,),
             Row(
               children: [
                 SizedBox(width: 15,),
@@ -164,11 +165,11 @@ class DashBoard extends StatelessWidget {
                           SizedBox(width: 20,),
                           Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("87.4",style: TextStyle(color:appbarController.islight.value
+                              Text("87.4",style:GoogleFonts.inter(color:appbarController.islight.value
                                       ? Colors.grey.shade600
                                       : Colors.white ,fontSize: 16,fontWeight: FontWeight.bold),),
                              
-                              Text("New Orders",style: TextStyle(color: appbarController.islight.value
+                              Text("New Orders",style: GoogleFonts.inter(color: appbarController.islight.value
                                       ? Colors.grey.shade600
                                       : Colors.white,fontSize: 12,),)
                             ],
@@ -195,11 +196,11 @@ class DashBoard extends StatelessWidget {
                           SizedBox(width: 20,),
                           Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("+12%",style: TextStyle(color: appbarController.islight.value
+                              Text("+12%",style: GoogleFonts.inter(color: appbarController.islight.value
                                       ? Colors.grey.shade600
                                       : Colors.white,fontSize: 16,fontWeight: FontWeight.bold),),
                              
-                              Text("Today Sales",style: TextStyle(color: appbarController.islight.value
+                              Text("Today Sales",style:GoogleFonts.inter(color: appbarController.islight.value
                                       ? Colors.grey.shade600
                                       : Colors.white,fontSize: 12,),)
                             ],
@@ -226,11 +227,11 @@ class DashBoard extends StatelessWidget {
                           SizedBox(width: 20,),
                           Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("44.5",style: TextStyle(color: appbarController.islight.value
+                              Text("44.5",style: GoogleFonts.inter(color: appbarController.islight.value
                                       ? Colors.grey.shade600
                                       : Colors.white,fontSize: 16,fontWeight: FontWeight.bold),),
                              
-                              Text("New Users",style: TextStyle(color: appbarController.islight.value
+                              Text("New Users",style: GoogleFonts.inter(color: appbarController.islight.value
                                       ? Colors.grey.shade600
                                       : Colors.white,fontSize: 12,),)
                             ],
@@ -257,11 +258,11 @@ class DashBoard extends StatelessWidget {
                           SizedBox(width: 20,),
                           Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("50",style: TextStyle(color: appbarController.islight.value
+                              Text("50",style: GoogleFonts.inter(color: appbarController.islight.value
                                       ? Colors.grey.shade600
                                       : Colors.white,fontSize: 16,fontWeight: FontWeight.bold),),
                              
-                              Text("Pending Issues",style: TextStyle(color: appbarController.islight.value
+                              Text("Pending Issues",style: GoogleFonts.inter(color: appbarController.islight.value
                                       ? Colors.grey.shade600
                                       : Colors.white,fontSize: 12,),)
                             ],
@@ -283,7 +284,7 @@ class DashBoard extends StatelessWidget {
                   SizedBox(width: 15,),
               ],
             ),
-            SizedBox(height: 40,)
+            SizedBox(height: 20,)
           ],
         ),
       ),

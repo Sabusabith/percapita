@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:percapita_copy/controller/master_screens_controller.dart';
 import 'package:percapita_copy/screens/Login/login.dart';
 import 'package:percapita_copy/screens/common/colors/colors.dart';
@@ -208,7 +209,7 @@ class HoverListTile extends StatelessWidget {
                     : null,
                 title: Text(
                   title,
-                  style: TextStyle(
+                  style: GoogleFonts.inter(
                     color:hoverController.clickedIndex.value == index
                         ? primeryColor
                         : hoverController.hoveredIndex.value == index
@@ -280,7 +281,7 @@ class HoverExpansionTile extends StatelessWidget {
                 ),
                 title: Text(
                   title,
-                  style: TextStyle(
+                  style: GoogleFonts.inter(
                     color: hoverController.clickedIndex.value == index
                         ? primeryColor
                         : hoverController.hoveredIndex.value == index

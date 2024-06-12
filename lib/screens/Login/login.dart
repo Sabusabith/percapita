@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:percapita_copy/controller/appbar_controller.dart';
-import 'package:percapita_copy/screens/common/colors/colors.dart';
+import 'package:percapita_copy/common/colors/colors.dart';
 import 'package:percapita_copy/screens/home/MasterScreen.dart';
 import 'package:percapita_copy/screens/home/dashboard/dashboard.dart';
+import 'package:percapita_copy/screens/mobile/Mdashbord/mdashbord.dart';
 
+import '../../common/responsive.dart';
 import '../../controller/login_controller.dart';
 
 class Login extends StatelessWidget {
@@ -14,6 +16,8 @@ class Login extends StatelessWidget {
 // AppbarController appbarController = Get.put(AppbarController());
   @override
   Widget build(BuildContext context) {
+      var mobile = Responsive.isMobile(context);
+    var tab = Responsive.isTablet(context);
     Size size = MediaQuery.of(context).size;
     return 
     

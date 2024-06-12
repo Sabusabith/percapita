@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:searchbar_animation/searchbar_animation.dart';
 
+import 'responsive.dart';
+
 class SearchbarAnimation extends StatefulWidget {
   const SearchbarAnimation({Key? key}) : super(key: key);
   @override
@@ -12,15 +14,19 @@ class SearchbarAnimation extends StatefulWidget {
 class _SearchbarAnimationState extends State<SearchbarAnimation> {
   @override
   Widget build(BuildContext context) {
+         var mobile = Responsive.isMobile(context);
+    var tab = Responsive.isTablet(context);
     return _buildSearchbarAnimation();
   }
 
   Widget _buildSearchbarAnimation() {
+      var mobile = Responsive.isMobile(context);
+
     return SearchBarAnimation(
       durationInMilliSeconds:200,
       enableBoxBorder: true,
       isSearchBoxOnRightSide: true,
-      searchBoxWidth: MediaQuery.of(context).size.width / 4,
+      searchBoxWidth:mobile? MediaQuery.of(context).size.width / 2: MediaQuery.of(context).size.width / 4,
       textEditingController: TextEditingController(),
       isOriginalAnimation: false,
       enableButtonShadow: false,

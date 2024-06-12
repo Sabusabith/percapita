@@ -2,17 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percapita_copy/controller/appbar_controller.dart';
-import 'package:percapita_copy/screens/common/colors/colors.dart';
-import 'package:percapita_copy/screens/common/search_animation.dart';
+import 'package:percapita_copy/common/colors/colors.dart';
+import 'package:percapita_copy/common/search_animation.dart';
+import 'package:percapita_copy/screens/mobile/Mdashbord/mdashbord.dart';
+import 'package:percapita_copy/screens/mobile/mcompany/mcompany.dart';
+import 'package:percapita_copy/screens/mobile/mdrawer/mdrawer.dart';
 import 'package:percapita_copy/screens/sidebar/sidebar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../common/responsive.dart';
 import '../../controller/master_screens_controller.dart';
+import '../company/add_company.dart';
 
 class MasterScreen extends StatefulWidget {
   MasterScreen({required this.body});
   final Widget body;
-
+Widget selectedScreen = MDashboard();
   @override
   _MasterScreenState createState() => _MasterScreenState();
 }
@@ -21,35 +26,81 @@ class _MasterScreenState extends State<MasterScreen> {
   final controller = TextEditingController();
   late AppbarController appbarController;
   late MasterScreenController masterScreenController;
+  
 
   @override
   void initState() {
     super.initState();
     appbarController = Get.put(AppbarController());
     masterScreenController = Get.put(MasterScreenController());
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       masterScreenController.updateBody(widget.body);
     });
   }
 
+  void _onMenuItemSelected(int index) {
+  print("master menu index$index");
+  setState(() {
+    switch (index) {
+      case 0:
+        widget.selectedScreen = MDashboard();
+        break;
+      case 10:
+                widget.selectedScreen = Mcompany(onMenuItemSelected: _onMenuItemSelected);
+
+        break;
+      case 4:
+        // Navigate to the "Add Company" screen
+        widget.selectedScreen = AddCompany(); // Assuming AddCompany is your screen
+        break;
+      default:
+        widget.selectedScreen = MDashboard();
+    }
+  });
+}
+
+
   @override
   Widget build(BuildContext context) {
+    var mobile = Responsive.isMobile(context);
+    var tab = Responsive.isTablet(context);
     Size size = MediaQuery.of(context).size;
-    return Obx(() =>
-      Scaffold(
+    return Obx(
+      () => Scaffold(
+        backgroundColor: appbarController.islight.value
+            ? Colors.grey.shade100
+            : darkcolor.withOpacity(.8),
+        drawer: mobile
+            ? Mdrawer(onMenuItemSelected: _onMenuItemSelected)
+            : SizedBox(),
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
           toolbarHeight: 65,
           centerTitle: false,
-          leadingWidth: 200,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 80, top: 15),
-            child: Text(
-              "Percapita",
-              style: GoogleFonts.pacifico(color: primeryColor, fontSize: 20),
+          leadingWidth: mobile ? 50 : 200,
+          leading: mobile
+              ? Builder(
+                  builder: (context) => IconButton(
+                    icon: Icon(Icons.menu,color:appbarController.islight.value
+            ? darkcolor.withOpacity(.8):Colors.grey.shade100
             ),
-          ),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.only(left: 80, top: 15),
+                  child: Text(
+                    "Percapita",
+                    style:
+                        GoogleFonts.pacifico(color: primeryColor, fontSize: 20),
+                  ),
+                ),
           elevation: 2,
-          backgroundColor: appbarController.islight.value ? Colors.white : darkcolor,
+          backgroundColor:
+              appbarController.islight.value ? Colors.white : darkcolor,
           actions: [
             Container(
               width: 40,
@@ -66,7 +117,9 @@ class _MasterScreenState extends State<MasterScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 0),
               icon: Icon(
                 Icons.arrow_drop_down,
-                color: appbarController.islight.value ? Colors.grey.shade600 : Colors.white,
+                color: appbarController.islight.value
+                    ? Colors.grey.shade600
+                    : Colors.white,
               ),
               onSelected: (item) => onSelectedMenuItem(context, item),
               itemBuilder: (context) => [
@@ -84,91 +137,120 @@ class _MasterScreenState extends State<MasterScreen> {
                 ),
               ],
             ),
-            SizedBox(width: 30),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Alina Mclourd",
-                    style: GoogleFonts.inter(
-                      color: appbarController.islight.value ? Colors.grey.shade800 : Colors.white,
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
+            mobile ? SizedBox() : SizedBox(width: 30),
+            mobile
+                ? SizedBox()
+                : Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Alina Mclourd",
+                          style: GoogleFonts.inter(
+                            color: appbarController.islight.value
+                                ? Colors.grey.shade800
+                                : Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          "VP People Manager",
+                          style: GoogleFonts.inter(
+                            color: appbarController.islight.value
+                                ? Colors.grey.shade800
+                                : Colors.white,
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Text(
-                    "VP People Manager",
-                    style: GoogleFonts.inter(
-                      color: appbarController.islight.value ? Colors.grey.shade800 : Colors.white,
-                      fontSize: 11,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(width: 30),
+            mobile ? SizedBox() : SizedBox(width: 30),
             SearchbarAnimation(),
-            SizedBox(width: 20),
+            mobile
+                ? SizedBox(
+                    width: 10,
+                  )
+                : SizedBox(width: 20),
             GestureDetector(
               onTap: () {
                 appbarController.isDarkmode();
               },
               child: Obx(() => appbarController.islight.value
-                ? Container(
-                    width: 30,
-                    height: 30,
-                    child: Image.asset(
-                      "assets/images/png/dark.png",
-                      color: primeryColor,
-                    ),
-                  )
-                : Container(
-                    width: 30,
-                    height: 30,
-                    child: Image.asset(
-                      "assets/images/png/light.png",
-                      color: primeryColor,
-                    ),
-                  )),
+                  ? Container(
+                      width: 30,
+                      height: 30,
+                      child: Image.asset(
+                        "assets/images/png/dark.png",
+                        color: primeryColor,
+                      ),
+                    )
+                  : Container(
+                      width: 30,
+                      height: 30,
+                      child: Image.asset(
+                        "assets/images/png/light.png",
+                        color: primeryColor,
+                      ),
+                    )),
             ),
-            SizedBox(width: 40),
+            mobile
+                ? SizedBox(
+                    width: 15,
+                  )
+                : SizedBox(width: 40),
           ],
         ),
-        body: Obx(() => Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Container(
-                color: appbarController.islight.value ? Colors.grey.shade100 : darkcolor.withOpacity(.6),
-                width: size.width,
-                height: size.height,
-                child: Row(
-                  children: [
-                    SideBar(),
-                    Obx(() => Expanded(
-                      child: masterScreenController.body.value,
-                    )),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(10),
-              color:  darkcolor,
-              child: Center(
-                child: Text(
-                  "© 2024 made by Team Qhance for a better web.",
-                  style: TextStyle(
-                    color:   Colors.white,
-                    fontSize: 12,
+        body: mobile
+            ? SingleChildScrollView(
+                child: Container(
+                  width: size.width,
+                  height: size.height,
+                  child: Column(
+                    children: [Expanded(child:    widget.selectedScreen)],
                   ),
                 ),
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: appbarController.islight.value
+                          ? Colors.grey.shade100
+                          : darkcolor.withOpacity(.9),
+                      width: size.width,
+                      height: size.height,
+                      child: Row(
+                        children: [
+                          SideBar(),
+                          Expanded(
+                            child: SingleChildScrollView(
+                              child:
+                                  Obx(() => masterScreenController.body.value),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    color: darkcolor,
+                    child: Center(
+                      child: Text(
+                        "© 2024 made by Team Qhance for a better web.",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        )),
       ),
     );
   }

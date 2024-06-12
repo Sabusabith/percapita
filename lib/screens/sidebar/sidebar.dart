@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percapita_copy/controller/master_screens_controller.dart';
 import 'package:percapita_copy/screens/Login/login.dart';
-import 'package:percapita_copy/screens/common/colors/colors.dart';
+import 'package:percapita_copy/common/colors/colors.dart';
 import 'package:percapita_copy/screens/company/list_of_company.dart';
 import 'package:percapita_copy/screens/home/MasterScreen.dart';
 import 'package:percapita_copy/screens/home/dashboard/dashboard.dart';

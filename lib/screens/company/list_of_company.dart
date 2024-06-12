@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:percapita_copy/controller/appbar_controller.dart';
-import 'package:percapita_copy/screens/common/colors/colors.dart';
+import 'package:percapita_copy/common/colors/colors.dart';
 import 'package:percapita_copy/screens/company/add_company.dart';
 
+
+import '../../common/responsive.dart';
 import '../../controller/master_screens_controller.dart';
 
 class ListOfCompanies extends StatelessWidget {
@@ -15,6 +17,8 @@ class ListOfCompanies extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+       var mobile = Responsive.isMobile(context);
+    var tab = Responsive.isTablet(context);
     Size size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width,
@@ -28,7 +32,7 @@ class ListOfCompanies extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 15),
               width: size.width,
-              height: 60,
+              height:tab?50: 60,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   gradient: appbarController.islight.value
@@ -78,7 +82,7 @@ class ListOfCompanies extends StatelessWidget {
                               ? Colors.grey.shade700
                               : Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 15),
+                        fontSize:tab?13: 15),
                   )
                 ],
               ),
@@ -101,8 +105,8 @@ class ListOfCompanies extends StatelessWidget {
                       width: 20,
                     ),
                     Container(
-                      width: 60,
-                      height: 60,
+                      width:tab?50: 60,
+                      height:tab?50: 60,
                       child: Image.asset("assets/images/png/rocket.png"),
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -117,7 +121,7 @@ class ListOfCompanies extends StatelessWidget {
                           color: appbarController.islight.value
                               ? Colors.grey.shade800
                               : Colors.white,
-                          fontSize: 20,
+                          fontSize:tab?16: 20,
                           fontWeight: FontWeight.bold),
                     ),
                     Spacer(),
@@ -126,7 +130,7 @@ class ListOfCompanies extends StatelessWidget {
                     },
                       child: Container(
                         width: 100,
-                        height: 40,
+                        height:tab?35: 40,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: Colors.blue),
@@ -157,7 +161,7 @@ class ListOfCompanies extends StatelessWidget {
                 child: Container(
                   color:                       appbarController.islight.value ? Colors.white : darkcolor,
 
-                  width: size.width / 1.3,
+                  width:tab?size.width: size.width / 1.3,
                   margin: EdgeInsets.symmetric(horizontal: 15),
                   child: DataTable(
                     showBottomBorder: true,
@@ -172,7 +176,7 @@ class ListOfCompanies extends StatelessWidget {
                                 color:appbarController.islight.value
                               ? Colors.grey.shade800
                               : Colors.white,
-                                fontSize: 18,
+                                fontSize:tab?14: 18,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -185,7 +189,7 @@ class ListOfCompanies extends StatelessWidget {
                                       color:appbarController.islight.value
                               ? Colors.grey.shade800
                               : Colors.white,
-                                fontSize: 18,
+                                fontSize:tab?14: 18,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -198,7 +202,7 @@ class ListOfCompanies extends StatelessWidget {
                                     color:appbarController.islight.value
                               ? Colors.grey.shade800
                               : Colors.white,
-                                fontSize: 18,
+                                fontSize:tab?14: 18,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -211,7 +215,7 @@ class ListOfCompanies extends StatelessWidget {
                                     color:appbarController.islight.value
                               ? Colors.grey.shade800
                               : Colors.white,
-                                fontSize: 18,
+                                fontSize: tab?14: 18,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -224,7 +228,7 @@ class ListOfCompanies extends StatelessWidget {
                                     color:appbarController.islight.value
                               ? Colors.grey.shade800
                               : Colors.white,
-                                fontSize: 18,
+                                fontSize: tab?14: 18,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -237,7 +241,7 @@ class ListOfCompanies extends StatelessWidget {
                                     color:appbarController.islight.value
                               ? Colors.grey.shade800
                               : Colors.white,
-                                fontSize: 18,
+                                fontSize: tab?14: 18,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),

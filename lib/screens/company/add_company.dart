@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:percapita_copy/screens/common/customtextfield.dart';
+import 'package:percapita_copy/common/customtextfield.dart';
 
+import '../../common/responsive.dart';
 import '../../controller/appbar_controller.dart';
-import '../common/colors/colors.dart';
+import '../../common/colors/colors.dart';
 
 class AddCompany extends StatelessWidget {
   AppbarController appbarController = Get.put(AppbarController());
@@ -33,6 +34,8 @@ class AddCompany extends StatelessWidget {
   final gstnumberController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+           var mobile = Responsive.isMobile(context);
+    var tab = Responsive.isTablet(context);
     Size size = MediaQuery.of(context).size;
     return Obx(
       () => SingleChildScrollView(
@@ -45,7 +48,7 @@ class AddCompany extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 15),
               width: size.width,
-              height: 60,
+              height:tab?50: 60,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   gradient: appbarController.islight.value
@@ -95,7 +98,7 @@ class AddCompany extends StatelessWidget {
                             ? Colors.grey.shade700
                             : Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 15),
+                        fontSize:tab?13: 15),
                   )
                 ],
               ),
@@ -124,7 +127,7 @@ class AddCompany extends StatelessWidget {
                           "Basic Information",
                           style: TextStyle(
                               color:appbarController.islight.value?Colors.grey.shade800: Colors.grey.shade200,
-                              fontSize: 22,
+                              fontSize:tab?20: 22,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -241,7 +244,7 @@ class AddCompany extends StatelessWidget {
                           "Detailed Information",
                           style: TextStyle(
                               color:appbarController.islight.value?Colors.grey.shade800: Colors.grey.shade200,
-                              fontSize: 22,
+                              fontSize:tab?20: 22,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -431,7 +434,7 @@ class AddCompany extends StatelessWidget {
                           "Accounting Info",
                           style: TextStyle(
                               color: appbarController.islight.value?Colors.grey.shade800: Colors.grey.shade200,
-                              fontSize: 22,
+                              fontSize:tab?20: 22,
                               fontWeight: FontWeight.bold),
                         ),
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:percapita_copy/common/customtextfield.dart';
+import 'package:percapita_copy/screens/mobile/mcompany/add_mcompany.dart';
 
 import '../../common/responsive.dart';
 import '../../controller/appbar_controller.dart';
@@ -37,7 +38,7 @@ class AddCompany extends StatelessWidget {
            var mobile = Responsive.isMobile(context);
     var tab = Responsive.isTablet(context);
     Size size = MediaQuery.of(context).size;
-    return Obx(
+    return mobile?AddMcompany(): Obx(
       () => SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(

@@ -4,9 +4,12 @@ import 'package:get/get.dart';
 import 'package:percapita_copy/controller/appbar_controller.dart';
 import 'package:percapita_copy/common/colors/colors.dart';
 import 'package:percapita_copy/common/search_animation.dart';
+import 'package:percapita_copy/screens/Login/login.dart';
 import 'package:percapita_copy/screens/mobile/Mdashbord/mdashbord.dart';
 import 'package:percapita_copy/screens/mobile/mcompany/mcompany.dart';
 import 'package:percapita_copy/screens/mobile/mdrawer/mdrawer.dart';
+import 'package:percapita_copy/screens/mobile/mprofile/mprofile.dart';
+import 'package:percapita_copy/screens/profile/Profile.dart';
 import 'package:percapita_copy/screens/sidebar/sidebar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -53,6 +56,10 @@ class _MasterScreenState extends State<MasterScreen> {
       case 4:
         // Navigate to the "Add Company" screen
         widget.selectedScreen = AddCompany(); // Assuming AddCompany is your screen
+        break;
+        case 5:
+        // Navigate to the "Add Company" screen
+        widget.selectedScreen = SingleChildScrollView(child: Profile()); // Assuming AddCompany is your screen
         break;
       default:
         widget.selectedScreen = MDashboard();
@@ -214,7 +221,7 @@ class _MasterScreenState extends State<MasterScreen> {
                 ),
               )
             : Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               
                 children: [
                   Expanded(
                     child: Container(
@@ -258,14 +265,59 @@ class _MasterScreenState extends State<MasterScreen> {
   void onSelectedMenuItem(BuildContext context, int item) {
     switch (item) {
       case 0:
-        // Navigate to Profile
+          masterScreenController.updateBody(Profile());
+          setState(() {
+            widget.selectedScreen = SingleChildScrollView(child: Profile());
+          });
+          
         break;
       case 1:
         // Navigate to Settings
         break;
       case 2:
         // Logout
+        _showLogoutDialog(context);
+         
         break;
     }
   }
+
+
+  Future<void> _showLogoutDialog(BuildContext context) async {
+  return showDialog<void>(
+    
+    context: context,
+    barrierDismissible: false, // user must tap a button
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: appbarController.islight.value?Colors.white:darkcolor,
+        title: Text('Logout',style: TextStyle(color: appbarController.islight.value?darkcolor:Colors.white),),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text('Do you want to log out?',style: TextStyle(color: appbarController.islight.value?darkcolor:Colors.white)),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Cancel',style: TextStyle(color: primeryColor)),
+            onPressed: () {
+              Navigator.of(context).pop(); // dismiss the dialog
+            },
+          ),
+          TextButton(
+            child: Text('Logout',style: TextStyle(color: appbarController.islight.value?darkcolor:Colors.white)),
+            onPressed: () {
+        Navigator.of(context).pop(); // dismiss the dialog
+              // Add your logout logic here
+              Get.to(LoginScreen()); // Redirect
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
 }
